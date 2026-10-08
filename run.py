@@ -163,8 +163,7 @@ if __name__ == "__main__":
        err_msg = f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常中断，请查看 Actions 运行日志"
        wechat_notify.send_markdown(err_msg)
        serverchan_send("⚠️贴吧签到中断", err_msg)
-
-        raise
+       raise
     except Exception as e:
         logger.exception("签到过程发生未预期异常")
         err_msg = f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常: {e}"
