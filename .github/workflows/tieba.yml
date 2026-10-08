@@ -3,11 +3,12 @@ name: Daily Tieba Sign-In
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 16 * * *' # UTC 16:20 = 北京时间 00:20
+    - cron: '30 22 * * *'  # UTC 22:30 = 北京时间次日 06:30
 
 jobs:
   signin:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
