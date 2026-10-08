@@ -13,6 +13,7 @@ from datetime import datetime, timezone, timedelta
 
 from tieba_client import TiebaClient
 import wechat_notify
+from serverchan_notify import serverchan_send
 
 BJ_TZ = timezone(timedelta(hours=8))
 logging.Formatter.converter = staticmethod(
