@@ -25,6 +25,7 @@ jobs:
         env:
           BDUSS: ${{ secrets.BDUSS }}
           WECHAT_WEBHOOK_KEY: ${{ secrets.WECHAT_WEBHOOK_KEY }}
+          SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
         run: python run.py
 
   workflow-keepalive:
