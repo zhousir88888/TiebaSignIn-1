@@ -152,20 +152,22 @@ def main() -> None:
     summary.append("================================")
     logger.info("\n".join(summary))
 
-    wechat_notify.send_markdown(build_wechat_content(total, stats))
-
+    content = build_wechat_content(total, stats)
+    wechat_notify.send_markdown(content)
+    serverchan_send("贴吧签到完成", content)
 
 if __name__ == "__main__":
     try:
         main()
     except SystemExit:
-        wechat_notify.send_markdown(
-            f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常中断，请查看 Actions 运行日志"
-        )
+       err_msg = f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常中断，请查看 Actions 运行日志"
+       wechat_notify.send_markdown(err_msg)
+       serverchan_send("⚠️贴吧签到中断", err_msg)
+
         raise
     except Exception as e:
         logger.exception("签到过程发生未预期异常")
-        wechat_notify.send_markdown(
-            f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常：{e}"
-        )
+        err_msg = f"# 贴吧签到结果\n> {datetime.now(BJ_TZ)} 签到异常: {e}"
+        wechat_notify.send_markdown(err_msg)
+        serverchan_send("❌贴吧签到出错", err_msg)
         raise
